@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: codecfloor
+Version: 0.1.0
+Summary: Codec-floor attribution for latent video models
+Requires-Python: >=3.10
+Requires-Dist: numpy>=1.26
+Requires-Dist: opencv-python-headless<5,>=4.9
+Requires-Dist: scikit-image>=0.22
+Requires-Dist: scipy>=1.11
+Provides-Extra: viz
+Requires-Dist: matplotlib>=3.8; extra == "viz"
+Requires-Dist: pandas>=2.1; extra == "viz"
+Provides-Extra: gpu
+Requires-Dist: torch; extra == "gpu"
+Requires-Dist: diffusers; extra == "gpu"
+Requires-Dist: peft; extra == "gpu"
+Requires-Dist: finetrainers; extra == "gpu"
+Provides-Extra: dev
+Requires-Dist: pytest>=8; extra == "dev"
+Requires-Dist: ruff>=0.5; extra == "dev"

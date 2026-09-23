@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codecfloor"
+version = "0.1.0"
+description = "Codec-floor attribution for latent video models"
+requires-python = ">=3.10"
+# Tiers are defined in the handover doc, section 5.3. The core tier alone must
+# yield an importable package; tests/test_portable.py enforces that.
+dependencies = [
+    "numpy>=1.26",
+    # <5: cv2.remap changed in 5.0 and shifts warping error by up to 6%
+    # (DECISIONS.md, P-1 B7). Migrating is a deliberate, fingerprinted step.
+    "opencv-python-headless>=4.9,<5",
+    "scikit-image>=0.22",
+    "scipy>=1.11",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib>=3.8", "pandas>=2.1"]
+# Desktop only. Install torch from the pytorch CUDA index first, or pip will
+# resolve the CPU build from PyPI.
+gpu = ["torch", "diffusers", "peft", "finetrainers"]
+dev = ["pytest>=8", "ruff>=0.5"]
+
+# find, not an explicit list: an explicit list silently omits subpackages
+# (e.g. codecfloor/codecs/) added later.
+[tool.setuptools.packages.find]
+include = ["codecfloor*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
