@@ -17,13 +17,14 @@ python -m venv .venv
 
 .venv\Scripts\python.exe -m pytest -q                  # 44 passed
 .venv\Scripts\python.exe scripts\proxy_validation.py   # paper Table III -> runs/
+.venv\Scripts\python.exe scripts\make_figures.py       # docs/figures/*.png
 ```
 
 ## Where to read
 
 | | |
 |---|---|
-| [docs/PROJECT_GUIDE.md](docs/PROJECT_GUIDE.md) | Architecture, everything built so far, challenges and solutions, findings, what's next |
+| [docs/PROJECT_GUIDE.md](docs/PROJECT_GUIDE.md) | Technical reference: quantities, architecture, module contracts, determinism ledger, implementation log, results with figures, verification matrix, risks |
 | [HANDOVER_Implementation_Protocol.md](HANDOVER_Implementation_Protocol.md) | Working protocol, roadmap, standing decisions, risk register |
 | [DECISIONS.md](DECISIONS.md) | Every design decision, with alternatives and revisit conditions |
 | `runs/` | Immutable measurement records |
