@@ -20,9 +20,11 @@ dependencies = [
 
 [project.optional-dependencies]
 viz = ["matplotlib>=3.8", "pandas>=2.1"]
-# Desktop only. Install torch from the pytorch CUDA index first, or pip will
-# resolve the CPU build from PyPI.
-gpu = ["torch", "diffusers", "peft", "finetrainers"]
+# Desktop: install torch/torchvision from the pytorch CUDA index first, or pip
+# resolves the CPU build from PyPI. They also run the flow estimator (RAFT,
+# DECISIONS P-3 B5), so computing any metric needs them; on the laptop the
+# plain PyPI CPU build is enough (CPU and GPU flow agree to 3e-4 px).
+gpu = ["torch", "torchvision", "diffusers", "peft", "finetrainers"]
 dev = ["pytest>=8", "ruff>=0.5"]
 
 # find, not an explicit list: an explicit list silently omits subpackages

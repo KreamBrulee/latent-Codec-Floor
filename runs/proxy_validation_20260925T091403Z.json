@@ -1,0 +1,83 @@
+{
+  "kind": "proxy_validation",
+  "label": "proxy codec (temporal decimation x8), NOT the LTX-Video VAE",
+  "created_utc": "2026-09-25T09:14:03+00:00",
+  "config": {
+    "codec": "proxy",
+    "factor": 8,
+    "mode": "linear",
+    "label": "proxy codec (temporal decimation x8), NOT the LTX-Video VAE",
+    "flow": {
+      "estimator": "raft_large",
+      "weights": "Raft_Large_Weights.C_T_SKHT_V2",
+      "device": "cuda",
+      "tf32": false,
+      "chunk": 8,
+      "border": 8,
+      "torch": "2.14.0+cu130",
+      "torchvision": "0.29.0+cu130"
+    }
+  },
+  "environment": {
+    "python": "3.14.3",
+    "numpy": "2.5.3",
+    "opencv-python-headless": "4.14.0.94",
+    "scikit-image": "0.26.0"
+  },
+  "clips": {
+    "slow_pan": {
+      "frames": 33,
+      "source": {
+        "warp_error": 0.0014158139492792543,
+        "warp_error_p95": 0.0015729710226878523,
+        "raw_frame_diff": 0.005904320161789656,
+        "flow_mag": 0.6042471528053284
+      },
+      "reconstruction": {
+        "warp_error": 0.002804689047479769,
+        "warp_error_p95": 0.003936975402757526,
+        "raw_frame_diff": 0.0053232591599226,
+        "flow_mag": 0.5901470184326172
+      },
+      "motion_retained": 0.9766649552136925,
+      "delta_warp_abs": 0.001388875098200515,
+      "delta_warp_rel": 0.9809728876506316
+    },
+    "fast_action": {
+      "frames": 33,
+      "source": {
+        "warp_error": 0.00326557506195968,
+        "warp_error_p95": 0.003889902681112289,
+        "raw_frame_diff": 0.008159258402884007,
+        "flow_mag": 0.736667275428772
+      },
+      "reconstruction": {
+        "warp_error": 0.0017246827810595278,
+        "warp_error_p95": 0.0017625884094741196,
+        "raw_frame_diff": 0.0015028805937618017,
+        "flow_mag": 0.011425791308283806
+      },
+      "motion_retained": 0.015510111130745565,
+      "delta_warp_abs": -0.0015408922809001524,
+      "delta_warp_rel": -0.4718593973998132
+    },
+    "fine_texture": {
+      "frames": 33,
+      "source": {
+        "warp_error": 0.01697582472115755,
+        "warp_error_p95": 0.017393119540065526,
+        "raw_frame_diff": 0.12502458691596985,
+        "flow_mag": 2.4589664936065674
+      },
+      "reconstruction": {
+        "warp_error": 0.02341002185130492,
+        "warp_error_p95": 0.023564901389181613,
+        "raw_frame_diff": 0.023461075499653816,
+        "flow_mag": 0.019009772688150406
+      },
+      "motion_retained": 0.007730797771167985,
+      "delta_warp_abs": 0.006434197130147368,
+      "delta_warp_rel": 0.37902118075761043
+    }
+  }
+}

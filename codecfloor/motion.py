@@ -22,6 +22,7 @@ import cv2
 import numpy as np
 from skimage.metrics import structural_similarity as ssim
 
+from .flow import video_flow
 from .video_io import to_gray
 
 
@@ -29,7 +30,8 @@ from .video_io import to_gray
 class MotionProfile:
     dssim: float           # mean(1 - SSIM) over adjacent frame pairs
     flow_mag: float        # mean optical-flow magnitude (px/frame)
-    flow_p95: float        # 95th pct flow magnitude — catches localised fast motion
+    flow_p95: float        # 95th pct flow magnitude; descriptive
+    flow_p99: float        # 99th pct; the stratification statistic (P-3 B4)
     hf_energy: float       # mean |Laplacian| — proxy for fine texture content
     stratum: str = ""
 
@@ -44,19 +46,10 @@ def dssim_complexity(video: np.ndarray) -> float:
     return float(np.mean(vals))
 
 
-def flow_stats(video: np.ndarray, stride: int = 1) -> tuple[float, float]:
-    """Mean and 95th-percentile optical-flow magnitude, in pixels per frame."""
-    g = (to_gray(video) * 255).astype(np.uint8)
-    mags = []
-    for i in range(0, len(g) - 1, stride):
-        flow = cv2.calcOpticalFlowFarneback(
-            g[i], g[i + 1], None,
-            pyr_scale=0.5, levels=3, winsize=15,
-            iterations=3, poly_n=5, poly_sigma=1.2, flags=0,
-        )
-        mags.append(np.linalg.norm(flow, axis=-1))
-    m = np.concatenate([x.ravel() for x in mags])
-    return float(m.mean()), float(np.percentile(m, 95))
+def flow_stats(video: np.ndarray) -> tuple[float, float, float]:
+    """Mean, 95th and 99th percentile optical-flow magnitude, px per frame."""
+    m = np.linalg.norm(video_flow(video), axis=-1)
+    return float(m.mean()), float(np.percentile(m, 95)), float(np.percentile(m, 99))
 
 
 def hf_energy(video: np.ndarray) -> float:
@@ -66,52 +59,58 @@ def hf_energy(video: np.ndarray) -> float:
 
 
 def profile(video: np.ndarray) -> MotionProfile:
-    mean_mag, p95 = flow_stats(video)
+    mean_mag, p95, p99 = flow_stats(video)
     return MotionProfile(
         dssim=dssim_complexity(video),
         flow_mag=mean_mag,
         flow_p95=p95,
+        flow_p99=p99,
         hf_energy=hf_energy(video),
     )
 
 
-def assign_strata(profiles: list[MotionProfile],
-                  texture_quantile: float = 0.70) -> list[MotionProfile]:
-    """Assign each clip to slow_pan / fast_action / fine_texture.
+def strata_cutpoints(profiles: list[MotionProfile]) -> dict:
+    """Cut-points for equal-thirds stratification (DECISIONS.md, P-3 B4).
 
-    Rule, applied in order:
-      * fast_action  — flow magnitude in the top tercile of the corpus
-      * fine_texture — not fast, but high-frequency spatial energy above
-                       `texture_quantile` (detailed content with modest global
-                       motion: foliage, water, crowds, hair)
-      * slow_pan     — everything else
+    * fast_action  -- top third of the corpus by p99 flow magnitude. A tail
+                      statistic because fast motion is often local: mean flow
+                      is diluted by static background (Q-6), and p_q only sees
+                      motion covering more than (100-q)% of the frame, so p99
+                      detects fast motion over >= 1% of it.
+    * fine_texture -- of the rest, the half with higher Laplacian energy.
+    * slow_pan     -- the remainder. (Name kept for continuity; the stratum
+                      is "low motion, low texture", not only pans.)
 
-    Terciles are computed over the corpus rather than fixed thresholds, because
-    absolute flow magnitude is resolution-dependent. Record the cut points in
-    the run manifest so the stratification is reproducible.
+    Equal thirds give each stratum the same N, which maximises the weakest
+    stratum's sample for FVMD (Q-4); a fixed quantile such as the former 0.70
+    left stratum sizes to chance. Cut-points are corpus-relative because
+    flow magnitude is resolution-dependent; record them in the run manifest.
     """
-    if not profiles:
-        return profiles
-    flow = np.array([p.flow_mag for p in profiles])
-    hf = np.array([p.hf_energy for p in profiles])
-    fast_cut = np.quantile(flow, 2 / 3)
-    tex_cut = np.quantile(hf, texture_quantile)
+    if len(profiles) < 3:
+        raise ValueError(f"need at least 3 clips to form thirds, got {len(profiles)}")
+    p99 = np.array([p.flow_p99 for p in profiles])
+    fast_cut = float(np.quantile(p99, 2 / 3))
+    rest = np.array([p.hf_energy for p in profiles if p.flow_p99 < fast_cut])
+    return {
+        "statistic": "flow_p99",
+        "fast_action_flow_p99_cut": fast_cut,
+        "fine_texture_hf_cut": float(np.median(rest)),
+    }
+
+
+def assign_strata(profiles: list[MotionProfile],
+                  cutpoints: dict | None = None) -> dict:
+    """Label each profile in place; return the cut-points used.
+
+    Pass frozen `cutpoints` (C-3) to stratify new clips against a recorded
+    corpus rather than recomputing, which would not be reproducible.
+    """
+    cut = cutpoints or strata_cutpoints(profiles)
     for p in profiles:
-        if p.flow_mag >= fast_cut:
+        if p.flow_p99 >= cut["fast_action_flow_p99_cut"]:
             p.stratum = "fast_action"
-        elif p.hf_energy >= tex_cut:
+        elif p.hf_energy >= cut["fine_texture_hf_cut"]:
             p.stratum = "fine_texture"
         else:
             p.stratum = "slow_pan"
-    return profiles
-
-
-def strata_cutpoints(profiles: list[MotionProfile],
-                     texture_quantile: float = 0.70) -> dict:
-    flow = np.array([p.flow_mag for p in profiles])
-    hf = np.array([p.hf_energy for p in profiles])
-    return {
-        "fast_action_flow_cut": float(np.quantile(flow, 2 / 3)),
-        "fine_texture_hf_cut": float(np.quantile(hf, texture_quantile)),
-        "texture_quantile": texture_quantile,
-    }
+    return cut

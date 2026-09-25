@@ -1,0 +1,184 @@
+{
+  "kind": "flow_benchmark",
+  "created_utc": "2026-09-25T09:10:42+00:00",
+  "decision_rule": "Optical-flow estimator selection against exact ground truth (P-3 B5).\n\n    python scripts/flow_benchmark.py\n\nDECISION RULE, fixed before any RAFT result was seen (2026-09-25):\n  Choose the estimator with the lowest mean endpoint error (EPE, px) averaged\n  over all probes below, each probe weighted equally. If two are within 10%\n  of each other, prefer the faster one. Disqualify an estimator whose repeated\n  runs on identical input differ by more than 1% of its EPE (the metric would\n  not be reproducible).\n  The effect of the choice on any paper number is NOT a criterion.",
+  "config": {
+    "pan_speeds": [
+      0.6,
+      2.5,
+      5.0,
+      10.0,
+      20.0
+    ],
+    "angle_deg": 30,
+    "frames": 9,
+    "border": 8
+  },
+  "environment": {
+    "python": "3.14.3",
+    "numpy": "2.5.3",
+    "opencv-python-headless": "4.14.0.94",
+    "torch": "2.14.0+cu130",
+    "torchvision": "0.29.0+cu130",
+    "cuda": "13.0",
+    "gpu": "NVIDIA GeForce RTX 3060"
+  },
+  "results": {
+    "farneback": {
+      "probes": {
+        "pan_0.6px": {
+          "epe": 0.024052780121564865,
+          "speed_recovered": 1.0052852630615234,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_2.5px": {
+          "epe": 0.015667762607336044,
+          "speed_recovered": 1.0030481815338135,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_5px": {
+          "epe": 0.018969107419252396,
+          "speed_recovered": 1.001302719116211,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_10px": {
+          "epe": 0.02002384327352047,
+          "speed_recovered": 1.000182867050171,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_20px": {
+          "epe": 0.04250842705368996,
+          "speed_recovered": 1.0008676052093506,
+          "repeat_max_abs_diff": 0.0
+        },
+        "balls": {
+          "epe": 0.6150441765785217,
+          "epe_ball": 1.3114104270935059,
+          "epe_background": 0.5611665844917297,
+          "ball_speed_recovered": 0.9562972187995911,
+          "repeat_max_abs_diff": 0.0
+        }
+      },
+      "mean_epe": 0.12271101617564757,
+      "ms_per_pair": 9.300283333535239,
+      "max_repeat_diff_over_epe": 0.0
+    },
+    "raft_small_cuda": {
+      "probes": {
+        "pan_0.6px": {
+          "epe": 0.204283207654953,
+          "speed_recovered": 0.687268853187561,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_2.5px": {
+          "epe": 0.38028302788734436,
+          "speed_recovered": 0.8534625768661499,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_5px": {
+          "epe": 0.19421014189720154,
+          "speed_recovered": 1.0149052143096924,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_10px": {
+          "epe": 0.22504349052906036,
+          "speed_recovered": 1.0046675205230713,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_20px": {
+          "epe": 0.3612547516822815,
+          "speed_recovered": 0.983980655670166,
+          "repeat_max_abs_diff": 0.0
+        },
+        "balls": {
+          "epe": 0.2821367681026459,
+          "epe_ball": 2.1814939975738525,
+          "epe_background": 0.135184183716774,
+          "ball_speed_recovered": 0.8791329264640808,
+          "repeat_max_abs_diff": 0.0
+        }
+      },
+      "mean_epe": 0.27453523129224777,
+      "ms_per_pair": 12.981170833730479,
+      "max_repeat_diff_over_epe": 0.0
+    },
+    "raft_large_cuda": {
+      "probes": {
+        "pan_0.6px": {
+          "epe": 0.030084822326898575,
+          "speed_recovered": 0.9703885912895203,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_2.5px": {
+          "epe": 0.0996134877204895,
+          "speed_recovered": 0.9636121988296509,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_5px": {
+          "epe": 0.07097715884447098,
+          "speed_recovered": 0.9991232752799988,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_10px": {
+          "epe": 0.057788386940956116,
+          "speed_recovered": 1.0029687881469727,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_20px": {
+          "epe": 0.10082894563674927,
+          "speed_recovered": 0.9964761734008789,
+          "repeat_max_abs_diff": 0.0
+        },
+        "balls": {
+          "epe": 0.07769928127527237,
+          "epe_ball": 0.7969244718551636,
+          "epe_background": 0.022053077816963196,
+          "ball_speed_recovered": 0.9651320576667786,
+          "repeat_max_abs_diff": 0.0
+        }
+      },
+      "mean_epe": 0.07283201379080613,
+      "ms_per_pair": 24.035264583289973,
+      "max_repeat_diff_over_epe": 0.0
+    },
+    "raft_large_cpu": {
+      "probes": {
+        "pan_0.6px": {
+          "epe": 0.030173644423484802,
+          "speed_recovered": 0.9699493050575256,
+          "repeat_max_abs_diff": 0.00018098950386047363
+        },
+        "pan_2.5px": {
+          "epe": 0.09976792335510254,
+          "speed_recovered": 0.9635384678840637,
+          "repeat_max_abs_diff": 3.3855438232421875e-05
+        },
+        "pan_5px": {
+          "epe": 0.07094535231590271,
+          "speed_recovered": 0.9990703463554382,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_10px": {
+          "epe": 0.05775083601474762,
+          "speed_recovered": 1.0029548406600952,
+          "repeat_max_abs_diff": 0.0
+        },
+        "pan_20px": {
+          "epe": 0.10097312182188034,
+          "speed_recovered": 0.9964709281921387,
+          "repeat_max_abs_diff": 0.0
+        },
+        "balls": {
+          "epe": 0.07776123285293579,
+          "epe_ball": 0.7971524000167847,
+          "epe_background": 0.022102180868387222,
+          "ball_speed_recovered": 0.9651580452919006,
+          "repeat_max_abs_diff": 0.0
+        }
+      },
+      "mean_epe": 0.0728953517973423,
+      "ms_per_pair": 450.51862291635797,
+      "max_repeat_diff_over_epe": 0.005998264621942902
+    }
+  }
+}

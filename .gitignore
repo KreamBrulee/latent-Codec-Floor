@@ -1,0 +1,17 @@
+# Generated. Never the source of truth (HANDOVER §5.6).
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
+
+# Stays on the desktop (HANDOVER §5.6): weights, corpus, raw tensors, generated video.
+*.safetensors
+*.ckpt
+*.mp4
+*.pt
+
+# Word lock files
+~$*.docx
+Review_Paper_IEEE.docx

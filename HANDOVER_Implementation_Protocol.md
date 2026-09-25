@@ -36,11 +36,15 @@ codecfloor/
 
 All CPU-only. All tested. No GPU dependency anywhere in the domain layer — **this is deliberate and must be preserved** (see D-3).
 
+> **Correction, 2026-09-23.** The tree above describes the intended state, not the working tree. Actually present: the five domain modules (byte-identical to the handed-over files), now in `codecfloor/` with `pyproject.toml`, `tests/test_portable.py` and `DECISIONS.md` (added in P-1). **Absent:** `scripts/`, any original tests, the `Codec` interface / `ProxyCodec` class (only free functions exist), `MeasurementPath` / `MetricEngine` / `ErrorDecomposer`, and `cli.py`. See Q-5. Prerequisite steps P-1 to P-4 run before G-1.
+
 ### 1.3 Findings already established
 
 **F-1 — Motion loss is stratified.** Proxy codec, synthetic clips, motion energy retained: slow pan 71%, fast action 4%, fine texture 4%. Direction matches the taxonomy's prediction.
 
 **F-2 — Warping error is not safe as a primary metric.** On fast action, warping error *decreased* 40% while 96% of motion energy was destroyed. Smoothness-based metrics reward over-smoothing; a video with no motion left is trivially self-consistent. Consequence: FVMD is primary, warping error is a secondary diagnostic only.
+
+> **Corrected 2026-09-25 (P-4, then P-3).** The original figures came from 32-frame clips with a frozen tail, integer-stepped pans, flat-coloured balls, and Farneback flow, which under-read local motion. Current values, from `runs/proxy_validation_20260925T091403Z.json` (RAFT-large flow): motion retained slow pan **97.7%**, fast action **1.6%**, fine texture **0.8%**. On fast action, warping error decreased **47.2%** while **98.4%** of motion energy was removed. F-2 holds for fast action; on fine texture, warping error correctly rises (+37.9%).
 
 > F-1 and F-2 are from a **proxy codec on synthetic clips**. They demonstrate a mechanism and validate the instrument. They are **not** measurements of the LTX floor and must never be presented as such.
 
@@ -241,7 +245,7 @@ They never produce reported findings. *Revisit:* never.
 **D-5 — Runs are sealed and immutable.**
 No measurement is appended to a sealed run. Re-measurement creates a new run. *Revisit:* never.
 
-**D-6 — The core package must import and run without torch.**
+**D-6 — The core package must import and run without torch.** *(Narrowed 2026-09-25, DECISIONS P-3 B5b: it must still import without torch, but flow-based metrics need torch + torchvision; the CPU build suffices.)*
 Development happens on the desktop; demonstration happens on the laptop. Heavy dependencies are lazily imported inside their implementations, never at core module scope, so that `pip install -e ".[viz]"` on a machine with no CUDA yields a working Mode A and Mode B (see §5). Enforced by `tests/test_portable.py`, not by convention. *Revisit:* never — this is D-3 made testable, and it is also what made finding F-2 possible.
 
 ---
@@ -359,6 +363,13 @@ python -m codecfloor.cli demo --codec proxy --corpus synthetic
 | **R-1** | Codec floor turns out negligible | Premise weakened; becomes a negative-result paper | F-3 (early, cheap) |
 | **R-2** | Floor is flat across strata | Contradicts the taxonomy prediction — reportable, but reframes the contribution | F-4 |
 | **R-3** | Someone publishes the same attribution first | Contribution reduced to replication | Ongoing literature monitoring |
+| **Q-5** | Original `scripts/` (figure generators) and tests are not in the working tree (found 2026-09-23). *Update 2026-09-25:* the paper (§V) defines motion energy as mean optical-flow magnitude; with that definition, paper Table III reproduces exactly on OpenCV 4.14. **But** frames 25–31 of the 32-frame clips lie past the last kept keyframe and are frozen by the proxy. Restricted to the valid range 0–24: fast-action Δwarp −40.4% → **−22.6%**, fine-texture +0.2% → **+29.3%**, slow-pan retained 71.5% → **91.8%**. The F-2 *direction* survives; the paper's numbers do not | Paper Table III, the "40.4% / 96.1%" sentence in §V, and handover F-1/F-2 figures are boundary-artefact inflated | **Resolved by P-4 (2026-09-25):** 8k+1 [VERIFIED]; fixture stepping also fixed; see DECISIONS P-4. Paper edits pending |
+| **Q-6** | `assign_strata` bins on *mean* flow, which dilutes localised motion: on the synthetic fixtures it labels fast_action→slow_pan and fine_texture→fast_action (flow_p95 would order them correctly) | Real-corpus strata wrong in exactly the fast/local-motion case the taxonomy is about | **Resolved by P-3 (2026-09-25):** p99 flow, equal thirds; fixtures now land in their own strata. p99 stability still to check at C-3 |
+| **Q-8** | "Codec share" (paper Table II, abstract, conclusion) is undefined. The implied floor ÷ end-to-end assumes FVMD is additive across codec and denoiser; a Fréchet distance is not, and a stratum can show floor > end-to-end | The headline percentage is arithmetic on a non-additive quantity (paper's own R2) | Decision before F-2; empirical additivity check on the proxy |
+| **Q-9** | Generated video has no source clip, so its stratum is ambiguous. Stratifying by the generated video's own motion creates selection bias (a generator that under-moves lands in slow_pan) | Per-stratum end-to-end numbers biased in the direction of the hypothesis | Decision before D-1 (e.g. image+caption conditioning from the stratum's source clips) |
+| **Q-10** | Paper cites RAFT [15] for optical flow; every harness number uses Farneback (OpenCV) | Reviewer-visible mismatch between stated and actual method | **Resolved by P-3 (2026-09-25):** harness now uses RAFT-large (benchmark-selected), matching the citation |
+| **Q-11** | Farneback (current params) is accurate on the pans (EPE 0.03 px) but on fast_action recovers **35%** of the true ≈10.4 px/frame ball displacement: flat-coloured discs have no interior texture to track (textured discs: 80%). The fast-action source's motion energy is under-read, and part of its warping error is flow failure, not incoherence (measured 2026-09-25) | Table III fast-action row and the F-2 magnitude partly reflect the estimator, not the codec. The same limit applies to stratification and §V on real fast content | **Resolved by P-3 (2026-09-25):** textured balls; RAFT-large reads the fixture's motion correctly (0.737 vs ≈0.75 px/frame expected) |
+| **Q-7** | Warping error is library-version sensitive (up to 6.2% between OpenCV 4.14 and 5.0; flow/SSIM/PSNR unaffected) | Silent cross-machine drift in a reported metric | Mitigated by pin (DECISIONS P-1 B7); library versions must enter the run manifest |
 
 > R-1 and R-2 are **not failures**. They are outcomes. The project is designed so that either answer is publishable; what is not acceptable is not knowing.
 
