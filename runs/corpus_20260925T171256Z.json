@@ -1,0 +1,83 @@
+{
+  "kind": "corpus",
+  "created_utc": "2026-09-25T17:12:56+00:00",
+  "normalisation": {
+    "frames": 33,
+    "width": 768,
+    "height": 416,
+    "fps_rule": "every 2nd frame if > 40 fps",
+    "colour": "BT.709 limited range -> RGB",
+    "resize": "INTER_AREA to width, centre crop"
+  },
+  "licence_note": "Xiph derf research/standardisation sequences; pilot only, C-1 open",
+  "clips": {
+    "speed_bag_1080p": {
+      "header": "YUV4MPEG2 W1920 H1080 F30000:1001 Ip A1:1 C422",
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "colorspace": "422",
+      "url": "https://media.xiph.org/video/derf/y4m/speed_bag_1080p.y4m",
+      "byte_range": [
+        47,
+        136857844
+      ],
+      "sha256_raw": "0f7cb662cc6e18778a7ad4dddd6114826f22805b66c5f8d525d7691f436fc8c9",
+      "frame_step": 1,
+      "effective_fps": 29.97002997002997,
+      "source_frames": 33,
+      "sha256_clip": "db1786120ac8836c63b5c2f6508f6170b6204a3d49439c7a1d8a50b48627b174"
+    },
+    "touchdown_pass_1080p": {
+      "header": "YUV4MPEG2 W1920 H1080 F30000:1001 Ip A1:1 C422",
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "colorspace": "422",
+      "url": "https://media.xiph.org/video/derf/y4m/touchdown_pass_1080p.y4m",
+      "byte_range": [
+        47,
+        136857844
+      ],
+      "sha256_raw": "9a02267e8831b4da5402da46fd69fb808b56179ce309049a9e714584fb35fca8",
+      "frame_step": 1,
+      "effective_fps": 29.97002997002997,
+      "source_frames": 33,
+      "sha256_clip": "78d4eaace334a1f19d4cee112254df88fd4ad7e27a30c3f01567023763f4026f"
+    },
+    "aspen_1080p": {
+      "header": "YUV4MPEG2 W1920 H1080 F30000:1001 Ip A1:1 C422",
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "colorspace": "422",
+      "url": "https://media.xiph.org/video/derf/y4m/aspen_1080p.y4m",
+      "byte_range": [
+        47,
+        136857844
+      ],
+      "sha256_raw": "2db822a97034ea002362d96862fb33ced428977a02cf521413033751b1399794",
+      "frame_step": 1,
+      "effective_fps": 29.97002997002997,
+      "source_frames": 33,
+      "sha256_clip": "357dd04892b6250b286d29c27f8a0dacb6e1eac5af63e6580387c3a5010345a2"
+    },
+    "red_kayak_1080p": {
+      "header": "YUV4MPEG2 W1920 H1080 F30000:1001 Ip A1:1 C422",
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97002997002997,
+      "colorspace": "422",
+      "url": "https://media.xiph.org/video/derf/y4m/red_kayak_1080p.y4m",
+      "byte_range": [
+        47,
+        136857844
+      ],
+      "sha256_raw": "327452048cb0fd14224ab0057113a88fb7899ba96b9f18263d3c2c6aa53a2858",
+      "frame_step": 1,
+      "effective_fps": 29.97002997002997,
+      "source_frames": 33,
+      "sha256_clip": "0ec9ae251f2b82e9b0414f8fea0b662500ffcdc5cef688d982cee21ecaaded5f"
+    }
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "kind": "corpus",
+  "created_utc": "2026-09-25T17:12:57+00:00",
+  "normalisation": {
+    "frames": 33,
+    "width": 768,
+    "height": 416,
+    "fps_rule": "every 2nd frame if > 40 fps",
+    "colour": "BT.709 limited range -> RGB",
+    "resize": "INTER_AREA to width, centre crop"
+  },
+  "licence_note": "Xiph derf research/standardisation sequences; pilot only, C-1 open",
+  "clips": {
+    "crowd_run_1080p50": {
+      "header": "YUV4MPEG2 W1920 H1080 F50:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 50.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/crowd_run_1080p50.y4m",
+      "byte_range": [
+        36,
+        202176425
+      ],
+      "sha256_raw": "61b923e0979f86392228522cdff5836e42729a7086e1df40181d8634504e50e5",
+      "frame_step": 2,
+      "effective_fps": 25.0,
+      "source_frames": 65,
+      "sha256_clip": "c7ad15abe364fee3f1462ece95f4c3c9a2ef51effafd7ca2cf78b937e7a2519a"
+    },
+    "park_joy_420_720p50": {
+      "header": "YUV4MPEG2 W1280 H720 F50:1 Ip A1:1",
+      "width": 1280,
+      "height": 720,
+      "fps": 50.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/park_joy_420_720p50.y4m",
+      "byte_range": [
+        35,
+        89856424
+      ],
+      "sha256_raw": "895d6600417dfeca88451ab4a404cd994775c482c9e020944082e788c2be6018",
+      "frame_step": 2,
+      "effective_fps": 25.0,
+      "source_frames": 65,
+      "sha256_clip": "9a8ed7a252e630e212bb0c1a628eb9ec12d0b9c48955d915da9826819a68b813"
+    },
+    "ducks_take_off_420_720p50": {
+      "header": "YUV4MPEG2 W1280 H720 F50:1 Ip A1:1",
+      "width": 1280,
+      "height": 720,
+      "fps": 50.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/ducks_take_off_420_720p50.y4m",
+      "byte_range": [
+        35,
+        89856424
+      ],
+      "sha256_raw": "337cbfcd6e30d67f96f0aa28f1969e82d3c098734d4f552cae0b8b0425fdb2be",
+      "frame_step": 2,
+      "effective_fps": 25.0,
+      "source_frames": 65,
+      "sha256_clip": "b9ce70505e6f0405876ef006dcf4e1264949331d5af077cdedef6d3b34bb6a6f"
+    },
+    "riverbed_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/riverbed_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "8082f7f879db17435d81c29bfc55a3b7f86629dec44265898d79285165985098",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "710df60e4052819967fa20cab5d5a114a8565457a1fa265b202e45926ae41311"
+    },
+    "blue_sky_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/blue_sky_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "715a626978d11cc6dafae941003ac563f219b43723ff3430b9eddf08152e4db5",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "e254992809bad2fd9bca77f48fc88d55c54c555b6f5813d524b15eb926de40e8"
+    },
+    "sunflower_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/sunflower_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "c1f0c2ac223c52da5d63510ef233c2e9fc09b192e6a563007e3621dd9e9b05df",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "6e0f2b526ddcb95ba294a8a70d134c286fddb496566ab354dc5f2e0baee26b27"
+    },
+    "old_town_cross_420_720p50": {
+      "header": "YUV4MPEG2 W1280 H720 F50:1 Ip A1:1",
+      "width": 1280,
+      "height": 720,
+      "fps": 50.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/old_town_cross_420_720p50.y4m",
+      "byte_range": [
+        35,
+        89856424
+      ],
+      "sha256_raw": "89774aba6d3d8b1b88c514b33f948df3b24fddf007ad9fa5fadf680680d5da23",
+      "frame_step": 2,
+      "effective_fps": 25.0,
+      "source_frames": 65,
+      "sha256_clip": "23ca3aff95b4900f2801d8fb147c2262522e332ce060b32e06edaeddd58cf8cc"
+    },
+    "station2_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/station2_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "2117378d67648acdc1206c2ea5b3922be2db1b5450449890d50c778607d6849d",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "6d8632e4092b10018c36dbec16dd84a8e1ff6ff0a36fdf31d31be31e4c313567"
+    },
+    "pedestrian_area_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/pedestrian_area_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "d4315cab8351f8d07d36c34af0db3fa7e5562878e3e7f7ebc443f3e96fd915bc",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "d6bc773d16b7c0a42bbe8d4c94a517fd4965af3fde0ae61647a33c148875f790"
+    },
+    "rush_hour_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/rush_hour_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "6aeef2ec2af9f6ec5650f7581034cc0731869fd14a89fd340e4f5ad245ce43e8",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "4681ebd7877b36971fc811df2843fc07990aef55b8259e6e8cc6229d51a4d0f6"
+    },
+    "tractor_1080p25": {
+      "header": "YUV4MPEG2 W1920 H1080 F25:1 Ip A1:1",
+      "width": 1920,
+      "height": 1080,
+      "fps": 25.0,
+      "colorspace": "420jpeg",
+      "url": "https://media.xiph.org/video/derf/y4m/tractor_1080p25.y4m",
+      "byte_range": [
+        36,
+        102643433
+      ],
+      "sha256_raw": "dae93eee7b3f9daf4acde9271d0cd0df6fcdb25d29f35b82ea9fc4d1fe99e1b5",
+      "frame_step": 1,
+      "effective_fps": 25.0,
+      "source_frames": 33,
+      "sha256_clip": "2635728d081760124450f071f0d4ba28f961b104f87d38c45639157e0210bbe3"
+    }
+  }
+}

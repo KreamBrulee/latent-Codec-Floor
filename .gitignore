@@ -15,3 +15,6 @@ __pycache__/
 # Word lock files
 ~$*.docx
 Review_Paper_IEEE.docx
+
+# Video corpus stays on the desktop (HANDOVER §5.6); runs/corpus_*.json records it.
+data/
