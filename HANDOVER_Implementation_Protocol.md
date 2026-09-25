@@ -356,8 +356,8 @@ python -m codecfloor.cli demo --codec proxy --corpus synthetic
 
 | ID | Question / risk | Impact if it goes badly | Resolved by |
 |---|---|---|---|
-| **Q-1** | Is the LTX decoder deterministic at a fixed setting? | Floor becomes a distribution; statistical design changes | G-3 |
-| **Q-2** | Can untiled inference fit in 12 GB at usable resolution? | Forces D-1 revisit, weakens the claim | G-4 |
+| **Q-1** | Is the LTX decoder deterministic at a fixed setting? | Floor becomes a distribution; statistical design changes | **Answered for the pilot setting (2026-09-25):** LTX 0.9.5 VAE, timestep 0, posterior mode → bit-identical on repeat. (0.9.1's decoder injects noise and would not be.) |
+| **Q-2** | Can untiled inference fit in 12 GB at usable resolution? | Forces D-1 revisit, weakens the claim | **Answered at 33×768×416 (2026-09-25):** untiled fp32 peak 7.1 GB. Larger T or resolution still to check |
 | **Q-3** | Which real corpus, and under what licence? | Ethics commitment breach if wrong | C-1 |
 | **Q-4** | How many samples does FVD need to stabilise here? | Under-powered results that look precise but are noise | F-4 |
 | **R-1** | Codec floor turns out negligible | Premise weakened; becomes a negative-result paper | F-3 (early, cheap) |

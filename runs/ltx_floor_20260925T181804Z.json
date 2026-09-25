@@ -1,0 +1,558 @@
+{
+  "kind": "ltx_floor_pilot",
+  "created_utc": "2026-09-25T18:18:04+00:00",
+  "label": "LTX-Video 0.9.5 VAE round trip, pilot corpus (Xiph derf), N small; FVMD not included",
+  "corpus_records": [
+    "corpus_20260925T171256Z.json",
+    "corpus_20260925T171257Z.json"
+  ],
+  "codec": {
+    "codec": "ltx-video-0.9.5-vae",
+    "repo": "Lightricks/LTX-Video-0.9.5",
+    "revision": "e58e28c39631af4d1468ee57a853764e11c1d37e",
+    "subfolder": "vae",
+    "dtype": "float32",
+    "decode_timestep": 0.0,
+    "posterior": "mode",
+    "tiling": false,
+    "tf32": false,
+    "device": "cuda",
+    "timestep_conditioning": true,
+    "decoder_inject_noise": [
+      false,
+      false,
+      false,
+      false
+    ],
+    "spatial_compression": 32,
+    "temporal_compression": 8,
+    "latent_channels": 128,
+    "diffusers": "0.40.0",
+    "torch": "2.14.0+cu130"
+  },
+  "flow": {
+    "estimator": "raft_large",
+    "weights": "Raft_Large_Weights.C_T_SKHT_V2",
+    "device": "cuda",
+    "tf32": false,
+    "chunk": 8,
+    "border": 8,
+    "torch": "2.14.0+cu130",
+    "torchvision": "0.29.0+cu130"
+  },
+  "strata_cutpoints": {
+    "statistic": "flow_p99",
+    "fast_action_flow_p99_cut": 16.180147171020497,
+    "fine_texture_hf_cut": 14.778539657592773
+  },
+  "determinism": {
+    "clip": "aspen_1080p",
+    "identical": true,
+    "max_abs_diff": 0
+  },
+  "peak_vram_mib": {
+    "vae_phase": 7147.23291015625,
+    "raft_phase": 8176.4150390625
+  },
+  "environment": {
+    "python": "3.14.3",
+    "gpu": "NVIDIA GeForce RTX 3060",
+    "numpy": "2.5.3",
+    "opencv-python-headless": "4.14.0.94",
+    "diffusers": "0.40.0",
+    "torch": "2.14.0+cu130"
+  },
+  "clips": {
+    "aspen_1080p": {
+      "stratum": "slow_pan",
+      "profile": {
+        "dssim": 0.1963526505720513,
+        "flow_mag": 2.017159938812256,
+        "flow_p95": 6.457563877105713,
+        "flow_p99": 9.630756378173828,
+        "hf_energy": 8.410889625549316,
+        "stratum": "slow_pan"
+      },
+      "source": {
+        "warp_error": 0.009734866820508614,
+        "flow_mag": 2.0171597003936768,
+        "raw_frame_diff": 0.02177228033542633,
+        "motion_cv": 0.26397430896759033
+      },
+      "reconstruction": {
+        "warp_error": 0.007506323483539745,
+        "flow_mag": 1.4346389770507812,
+        "raw_frame_diff": 0.016925925388932228,
+        "motion_cv": 0.22764597833156586
+      },
+      "motion_retained": 0.7112173502032544,
+      "delta_warp_abs": -0.002228543336968869,
+      "delta_warp_rel": -0.22892386491348374,
+      "psnr": 32.70708543938453,
+      "seconds": 18.87640680000004
+    },
+    "blue_sky_1080p25": {
+      "stratum": "slow_pan",
+      "profile": {
+        "dssim": 0.3163961229521318,
+        "flow_mag": 3.2269060611724854,
+        "flow_p95": 4.504810810089111,
+        "flow_p99": 5.0333638191223145,
+        "hf_energy": 13.482199668884277,
+        "stratum": "slow_pan"
+      },
+      "source": {
+        "warp_error": 0.007040779586532153,
+        "flow_mag": 3.2269060611724854,
+        "raw_frame_diff": 0.04927762225270271,
+        "motion_cv": 0.025736333802342415
+      },
+      "reconstruction": {
+        "warp_error": 0.011494468053570017,
+        "flow_mag": 3.07367205619812,
+        "raw_frame_diff": 0.0413181371986866,
+        "motion_cv": 0.09578123688697815
+      },
+      "motion_retained": 0.9525136455572282,
+      "delta_warp_abs": 0.004453688467037864,
+      "delta_warp_rel": 0.6325561555082669,
+      "psnr": 25.013381818658065,
+      "seconds": 18.791114699999525
+    },
+    "crowd_run_1080p50": {
+      "stratum": "fine_texture",
+      "profile": {
+        "dssim": 0.37276456955576776,
+        "flow_mag": 1.2637763023376465,
+        "flow_p95": 4.259441375732422,
+        "flow_p99": 6.297199726104736,
+        "hf_energy": 32.52972412109375,
+        "stratum": "fine_texture"
+      },
+      "source": {
+        "warp_error": 0.03580680850427598,
+        "flow_mag": 1.2637767791748047,
+        "raw_frame_diff": 0.06100955232977867,
+        "motion_cv": 0.11970551311969757
+      },
+      "reconstruction": {
+        "warp_error": 0.021294495789334178,
+        "flow_mag": 1.2132034301757812,
+        "raw_frame_diff": 0.037567224353551865,
+        "motion_cv": 0.10110766440629959
+      },
+      "motion_retained": 0.9599823720198073,
+      "delta_warp_abs": -0.0145123127149418,
+      "delta_warp_rel": -0.40529478390146856,
+      "psnr": 20.952874691898643,
+      "seconds": 18.867150299999594
+    },
+    "ducks_take_off_420_720p50": {
+      "stratum": "fine_texture",
+      "profile": {
+        "dssim": 0.18694887926791803,
+        "flow_mag": 0.8206666111946106,
+        "flow_p95": 1.4254826307296753,
+        "flow_p99": 2.0521044731140137,
+        "hf_energy": 29.961917877197266,
+        "stratum": "fine_texture"
+      },
+      "source": {
+        "warp_error": 0.03684583131689578,
+        "flow_mag": 0.8206666111946106,
+        "raw_frame_diff": 0.04465009644627571,
+        "motion_cv": 0.038599442690610886
+      },
+      "reconstruction": {
+        "warp_error": 0.02329130010912195,
+        "flow_mag": 0.8962339758872986,
+        "raw_frame_diff": 0.032449688762426376,
+        "motion_cv": 0.04393400624394417
+      },
+      "motion_retained": 1.0920804668569222,
+      "delta_warp_abs": -0.013554531207773834,
+      "delta_warp_rel": -0.3678714992531152,
+      "psnr": 22.803567637524743,
+      "seconds": 18.899351500000193
+    },
+    "old_town_cross_420_720p50": {
+      "stratum": "fine_texture",
+      "profile": {
+        "dssim": 0.17977802604257426,
+        "flow_mag": 0.6072301864624023,
+        "flow_p95": 1.81785249710083,
+        "flow_p99": 2.24687123298645,
+        "hf_energy": 18.261043548583984,
+        "stratum": "fine_texture"
+      },
+      "source": {
+        "warp_error": 0.011212532670469955,
+        "flow_mag": 0.6072301864624023,
+        "raw_frame_diff": 0.023952756077051163,
+        "motion_cv": 0.1432538628578186
+      },
+      "reconstruction": {
+        "warp_error": 0.007836907840101048,
+        "flow_mag": 0.6079369783401489,
+        "raw_frame_diff": 0.01441615354269743,
+        "motion_cv": 0.16132746636867523
+      },
+      "motion_retained": 1.0011639603786238,
+      "delta_warp_abs": -0.0033756248303689063,
+      "delta_warp_rel": -0.3010581935033437,
+      "psnr": 28.770348741229487,
+      "seconds": 18.938141600000563
+    },
+    "park_joy_420_720p50": {
+      "stratum": "fast_action",
+      "profile": {
+        "dssim": 0.6141064831701677,
+        "flow_mag": 12.565038681030273,
+        "flow_p95": 41.33977508544922,
+        "flow_p99": 42.407283782958984,
+        "hf_energy": 28.90715980529785,
+        "stratum": "fast_action"
+      },
+      "source": {
+        "warp_error": 0.030502201174385846,
+        "flow_mag": 12.56503963470459,
+        "raw_frame_diff": 0.08749592304229736,
+        "motion_cv": 0.45620959997177124
+      },
+      "reconstruction": {
+        "warp_error": 0.03410778142279014,
+        "flow_mag": 11.165340423583984,
+        "raw_frame_diff": 0.06755135953426361,
+        "motion_cv": 0.4731310307979584
+      },
+      "motion_retained": 0.8886036772017303,
+      "delta_warp_abs": 0.0036055802484042943,
+      "delta_warp_rel": 0.11820721487576025,
+      "psnr": 22.15461729200125,
+      "seconds": 18.95858230000067
+    },
+    "pedestrian_area_1080p25": {
+      "stratum": "fast_action",
+      "profile": {
+        "dssim": 0.3125826359813841,
+        "flow_mag": 6.30425500869751,
+        "flow_p95": 17.54324722290039,
+        "flow_p99": 21.376806259155273,
+        "hf_energy": 7.600484371185303,
+        "stratum": "fast_action"
+      },
+      "source": {
+        "warp_error": 0.019854021025821567,
+        "flow_mag": 6.30425500869751,
+        "raw_frame_diff": 0.04845673590898514,
+        "motion_cv": 0.23113828897476196
+      },
+      "reconstruction": {
+        "warp_error": 0.019101203681202605,
+        "flow_mag": 5.428738594055176,
+        "raw_frame_diff": 0.04477182775735855,
+        "motion_cv": 0.20840172469615936
+      },
+      "motion_retained": 0.861122937851586,
+      "delta_warp_abs": -0.0007528173446189612,
+      "delta_warp_rel": -0.03791762603856764,
+      "psnr": 30.884526880699468,
+      "seconds": 18.964205400000537
+    },
+    "red_kayak_1080p": {
+      "stratum": "fast_action",
+      "profile": {
+        "dssim": 0.5942459124450697,
+        "flow_mag": 22.871734619140625,
+        "flow_p95": 38.7086067199707,
+        "flow_p99": 53.61760711669922,
+        "hf_energy": 20.636844635009766,
+        "stratum": "fast_action"
+      },
+      "source": {
+        "warp_error": 0.0616248898440972,
+        "flow_mag": 22.871734619140625,
+        "raw_frame_diff": 0.08451902121305466,
+        "motion_cv": 0.0894872173666954
+      },
+      "reconstruction": {
+        "warp_error": 0.049595576943829656,
+        "flow_mag": 13.391999244689941,
+        "raw_frame_diff": 0.06938699632883072,
+        "motion_cv": 0.27709850668907166
+      },
+      "motion_retained": 0.5855261731430988,
+      "delta_warp_abs": -0.012029312900267541,
+      "delta_warp_rel": -0.19520218098077105,
+      "psnr": 23.275268435137928,
+      "seconds": 18.96509419999984
+    },
+    "riverbed_1080p25": {
+      "stratum": "fine_texture",
+      "profile": {
+        "dssim": 0.6347497769222223,
+        "flow_mag": 2.466672897338867,
+        "flow_p95": 5.924534320831299,
+        "flow_p99": 13.581817626953125,
+        "hf_energy": 15.07420825958252,
+        "stratum": "fine_texture"
+      },
+      "source": {
+        "warp_error": 0.07231735321693122,
+        "flow_mag": 2.466503143310547,
+        "raw_frame_diff": 0.0789724737405777,
+        "motion_cv": 0.27999621629714966
+      },
+      "reconstruction": {
+        "warp_error": 0.04954317503143102,
+        "flow_mag": 1.1414756774902344,
+        "raw_frame_diff": 0.05512991175055504,
+        "motion_cv": 0.23169401288032532
+      },
+      "motion_retained": 0.462791089719895,
+      "delta_warp_abs": -0.022774178185500205,
+      "delta_warp_rel": -0.3149199628087083,
+      "psnr": 23.375551188122294,
+      "seconds": 18.974944099999448
+    },
+    "rush_hour_1080p25": {
+      "stratum": "fast_action",
+      "profile": {
+        "dssim": 0.12561683530449627,
+        "flow_mag": 2.3047797679901123,
+        "flow_p95": 10.12797737121582,
+        "flow_p99": 21.72766876220703,
+        "hf_energy": 5.624063014984131,
+        "stratum": "fast_action"
+      },
+      "source": {
+        "warp_error": 0.013222710957052186,
+        "flow_mag": 2.3047797679901123,
+        "raw_frame_diff": 0.024012070149183273,
+        "motion_cv": 0.43125468492507935
+      },
+      "reconstruction": {
+        "warp_error": 0.00796225224621594,
+        "flow_mag": 1.8627362251281738,
+        "raw_frame_diff": 0.018138140439987183,
+        "motion_cv": 0.44281885027885437
+      },
+      "motion_retained": 0.8082057344474941,
+      "delta_warp_abs": -0.005260458710836247,
+      "delta_warp_rel": -0.39783511323225584,
+      "psnr": 33.94109740088195,
+      "seconds": 18.986681299999873
+    },
+    "speed_bag_1080p": {
+      "stratum": "fast_action",
+      "profile": {
+        "dssim": 0.13017325361680357,
+        "flow_mag": 6.822789192199707,
+        "flow_p95": 39.19717025756836,
+        "flow_p99": 45.45059585571289,
+        "hf_energy": 5.2928290367126465,
+        "stratum": "fast_action"
+      },
+      "source": {
+        "warp_error": 0.021573346108198166,
+        "flow_mag": 6.822789192199707,
+        "raw_frame_diff": 0.03996841609477997,
+        "motion_cv": 0.7297666072845459
+      },
+      "reconstruction": {
+        "warp_error": 0.02190094519755803,
+        "flow_mag": 6.697951316833496,
+        "raw_frame_diff": 0.038177490234375,
+        "motion_cv": 0.7340479493141174
+      },
+      "motion_retained": 0.9817028092398143,
+      "delta_warp_abs": 0.0003275990893598646,
+      "delta_warp_rel": 0.015185362887928287,
+      "psnr": 36.58562312460298,
+      "seconds": 18.981409400000302
+    },
+    "station2_1080p25": {
+      "stratum": "slow_pan",
+      "profile": {
+        "dssim": 0.36756355482767866,
+        "flow_mag": 2.521667957305908,
+        "flow_p95": 4.272747993469238,
+        "flow_p99": 4.868297100067139,
+        "hf_energy": 10.624878883361816,
+        "stratum": "slow_pan"
+      },
+      "source": {
+        "warp_error": 0.006088427413487807,
+        "flow_mag": 2.521667957305908,
+        "raw_frame_diff": 0.030674103647470474,
+        "motion_cv": 0.03845653682947159
+      },
+      "reconstruction": {
+        "warp_error": 0.007722605703747831,
+        "flow_mag": 2.453686475753784,
+        "raw_frame_diff": 0.024620484560728073,
+        "motion_cv": 0.060721274465322495
+      },
+      "motion_retained": 0.9730410653967488,
+      "delta_warp_abs": 0.0016341782902600244,
+      "delta_warp_rel": 0.268407288003434,
+      "psnr": 32.676294770954485,
+      "seconds": 18.9780695999998
+    },
+    "sunflower_1080p25": {
+      "stratum": "slow_pan",
+      "profile": {
+        "dssim": 0.34352005524911444,
+        "flow_mag": 4.057080268859863,
+        "flow_p95": 6.161086082458496,
+        "flow_p99": 6.387831211090088,
+        "hf_energy": 5.1515936851501465,
+        "stratum": "slow_pan"
+      },
+      "source": {
+        "warp_error": 0.00517299969214946,
+        "flow_mag": 4.057080268859863,
+        "raw_frame_diff": 0.04357630014419556,
+        "motion_cv": 0.4210071861743927
+      },
+      "reconstruction": {
+        "warp_error": 0.005146565337781794,
+        "flow_mag": 3.9651811122894287,
+        "raw_frame_diff": 0.04223688319325447,
+        "motion_cv": 0.4375920295715332
+      },
+      "motion_retained": 0.9773484499984368,
+      "delta_warp_abs": -2.6434354367665946e-05,
+      "delta_warp_rel": -0.005110063008080727,
+      "psnr": 32.74879321459979,
+      "seconds": 18.977216899999803
+    },
+    "touchdown_pass_1080p": {
+      "stratum": "fine_texture",
+      "profile": {
+        "dssim": 0.0852031376865089,
+        "flow_mag": 0.34025639295578003,
+        "flow_p95": 0.784385621547699,
+        "flow_p99": 1.5878359079360962,
+        "hf_energy": 15.338589668273926,
+        "stratum": "fine_texture"
+      },
+      "source": {
+        "warp_error": 0.010262889205478132,
+        "flow_mag": 0.34025639295578003,
+        "raw_frame_diff": 0.014429471455514431,
+        "motion_cv": 0.5943095684051514
+      },
+      "reconstruction": {
+        "warp_error": 0.006329128678771667,
+        "flow_mag": 0.2704516649246216,
+        "raw_frame_diff": 0.008400099352002144,
+        "motion_cv": 0.526986300945282
+      },
+      "motion_retained": 0.7948466818660764,
+      "delta_warp_abs": -0.003933760526706465,
+      "delta_warp_rel": -0.38329952199101003,
+      "psnr": 30.759478086334667,
+      "seconds": 18.971312900000157
+    },
+    "tractor_1080p25": {
+      "stratum": "slow_pan",
+      "profile": {
+        "dssim": 0.5267166607882894,
+        "flow_mag": 4.98375129699707,
+        "flow_p95": 9.198265075683594,
+        "flow_p99": 9.409517288208008,
+        "hf_energy": 14.482871055603027,
+        "stratum": "slow_pan"
+      },
+      "source": {
+        "warp_error": 0.018334608990699053,
+        "flow_mag": 4.98375129699707,
+        "raw_frame_diff": 0.060990698635578156,
+        "motion_cv": 0.19319793581962585
+      },
+      "reconstruction": {
+        "warp_error": 0.01850147225195542,
+        "flow_mag": 4.541473388671875,
+        "raw_frame_diff": 0.049041952937841415,
+        "motion_cv": 0.18500305712223053
+      },
+      "motion_retained": 0.911256023431248,
+      "delta_warp_abs": 0.00016686326125636697,
+      "delta_warp_rel": 0.00910099917271292,
+      "psnr": 27.092560345481637,
+      "seconds": 18.978942499999903
+    }
+  },
+  "strata": {
+    "slow_pan": {
+      "n": 5,
+      "motion_retained": {
+        "mean": 0.9050753069173834,
+        "min": 0.7112173502032544,
+        "max": 0.9773484499984368
+      },
+      "delta_warp_rel": {
+        "mean": 0.13520610295256988,
+        "min": -0.22892386491348374,
+        "max": 0.6325561555082669
+      },
+      "delta_warp_abs": {
+        "mean": 0.0007999504654435441,
+        "min": -0.002228543336968869,
+        "max": 0.004453688467037864
+      },
+      "psnr": {
+        "mean": 30.047623117815704,
+        "min": 25.013381818658065,
+        "max": 32.74879321459979
+      }
+    },
+    "fast_action": {
+      "n": 5,
+      "motion_retained": {
+        "mean": 0.8250322663767446,
+        "min": 0.5855261731430988,
+        "max": 0.9817028092398143
+      },
+      "delta_warp_rel": {
+        "mean": -0.09951246849758119,
+        "min": -0.39783511323225584,
+        "max": 0.11820721487576025
+      },
+      "delta_warp_abs": {
+        "mean": -0.002821881923591718,
+        "min": -0.012029312900267541,
+        "max": 0.0036055802484042943
+      },
+      "psnr": {
+        "mean": 29.368226626664715,
+        "min": 22.15461729200125,
+        "max": 36.58562312460298
+      }
+    },
+    "fine_texture": {
+      "n": 5,
+      "motion_retained": {
+        "mean": 0.8621729141682648,
+        "min": 0.462791089719895,
+        "max": 1.0920804668569222
+      },
+      "delta_warp_rel": {
+        "mean": -0.35448879229152913,
+        "min": -0.40529478390146856,
+        "max": -0.3010581935033437
+      },
+      "delta_warp_abs": {
+        "mean": -0.011630081493058242,
+        "min": -0.022774178185500205,
+        "max": -0.0033756248303689063
+      },
+      "psnr": {
+        "mean": 25.33236406902197,
+        "min": 20.952874691898643,
+        "max": 30.759478086334667
+      }
+    }
+  }
+}
